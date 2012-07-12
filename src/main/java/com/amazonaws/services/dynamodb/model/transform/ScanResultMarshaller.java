@@ -40,7 +40,7 @@ public class ScanResultMarshaller implements Marshaller<String, ScanResult> {
 			}
 			jsonWriter.endArray();
 
-			if (scanResult.getLastEvaluatedKey().getHashKeyElement() != null) {
+			if (scanResult.getLastEvaluatedKey() != null && scanResult.getLastEvaluatedKey().getHashKeyElement() != null) {
 				jsonWriter.key("LastEvaluatedKey").object();
 				jsonWriter.key("HashKeyElement").object();
 				if (scanResult.getLastEvaluatedKey().getHashKeyElement().getS() != null) {
