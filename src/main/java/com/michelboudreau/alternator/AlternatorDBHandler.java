@@ -40,7 +40,12 @@ class AlternatorDBHandler {
 
     public void restore(String persistence){
         try {
-            tableList = createObjectMapper().readValue(new File(persistence), TypeFactory.collectionType(ArrayList.class, Table.class));
+            File file = new File(persistence);
+            if(file.exists()==false) {
+            	return;
+            }
+            
+			tableList = createObjectMapper().readValue(file, TypeFactory.collectionType(ArrayList.class, Table.class));
 
             for (Table table : tableList){
                 tables.put(table.getName(), table);
